@@ -52,7 +52,7 @@ echo "!!!  Creating archive  !!!"
 rm -rf modules-rpi-${KERNEL_VERSION}-ili9881c/
 mkdir -p modules-rpi-${KERNEL_VERSION}-ili9881c/boot/overlays
 mkdir -p modules-rpi-${KERNEL_VERSION}-ili9881c/lib/modules/${KERNEL_VERSION}-v7l+/kernel/drivers/gpu/drm/panel/
-cp linux-${KERNEL_VERSION}-v7l+/arch/arm/boot/dts/overlays/motivo-panel.dtbo modules-rpi-${KERNEL_VERSION}-ili9881c/boot/overlays
+cp linux-${KERNEL_VERSION}-v7l+/arch/arm/boot/dts/overlays/motivo*.dtbo modules-rpi-${KERNEL_VERSION}-ili9881c/boot/overlays
 cp linux-${KERNEL_VERSION}-v7l+/drivers/gpu/drm/panel/panel-ilitek-ili9881c.ko modules-rpi-${KERNEL_VERSION}-ili9881c/lib/modules/${KERNEL_VERSION}-v7l+/kernel/drivers/gpu/drm/panel/
 tar -czvf modules-rpi-${KERNEL_VERSION}-ili9881c.tar.gz modules-rpi-${KERNEL_VERSION}-ili9881c/ --owner=0 --group=0
 md5sum modules-rpi-${KERNEL_VERSION}-ili9881c.tar.gz > modules-rpi-${KERNEL_VERSION}-ili9881c.md5sum.txt
