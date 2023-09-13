@@ -15,10 +15,10 @@ index bff07c174..e379638f5 100644
  	ov5647.dtbo \
 diff --git a/arch/arm/boot/dts/overlays/motivo-panel-a-overlay.dts b/arch/arm/boot/dts/overlays/motivo-panel-a-overlay.dts
 new file mode 100644
-index 000000000..3beeea361
+index 000000000..b0f983ce9
 --- /dev/null
 +++ b/arch/arm/boot/dts/overlays/motivo-panel-a-overlay.dts
-@@ -0,0 +1,117 @@
+@@ -0,0 +1,121 @@
 +/dts-v1/;
 +/plugin/;
 +
@@ -124,7 +124,7 @@ index 000000000..3beeea361
 +            status = "okay";
 +
 +            gt9xx: gt9xx@5d {
-+                compatible = "goodix,gt9271";
++                compatible = "goodix,gt911";
 +                reg = <0x5D>;
 +                pinctrl-names = "default";
 +                pinctrl-0 = <&goodix_pins>;
@@ -132,16 +132,20 @@ index 000000000..3beeea361
 +                interrupts = <27 2>; // high-to-low edge triggered
 +                irq-gpios = <&gpio 27 0>;
 +                reset-gpios = <&gpio 26 0>;
++                touchscreen-size-x = <800>;
++                touchscreen-size-y = <1280>;
++                touchscreen-inverted-y;
++                touchscreen-swapped-x-y;
 +            };
 +        };
 +    };
 +};
 diff --git a/arch/arm/boot/dts/overlays/motivo-panel-b-overlay.dts b/arch/arm/boot/dts/overlays/motivo-panel-b-overlay.dts
 new file mode 100644
-index 000000000..8f01bf6ac
+index 000000000..2f63504d9
 --- /dev/null
 +++ b/arch/arm/boot/dts/overlays/motivo-panel-b-overlay.dts
-@@ -0,0 +1,117 @@
+@@ -0,0 +1,121 @@
 +/dts-v1/;
 +/plugin/;
 +
@@ -247,7 +251,7 @@ index 000000000..8f01bf6ac
 +            status = "okay";
 +
 +            gt9xx: gt9xx@5d {
-+                compatible = "goodix,gt9271";
++                compatible = "goodix,gt911";
 +                reg = <0x5D>;
 +                pinctrl-names = "default";
 +                pinctrl-0 = <&goodix_pins>;
@@ -255,16 +259,20 @@ index 000000000..8f01bf6ac
 +                interrupts = <27 2>; // high-to-low edge triggered
 +                irq-gpios = <&gpio 27 0>;
 +                reset-gpios = <&gpio 26 0>;
++                touchscreen-size-x = <800>;
++                touchscreen-size-y = <1280>;
++                touchscreen-inverted-y;
++                touchscreen-swapped-x-y;
 +            };
 +        };
 +    };
 +};
 diff --git a/arch/arm/boot/dts/overlays/motivo-panel-c-overlay.dts b/arch/arm/boot/dts/overlays/motivo-panel-c-overlay.dts
 new file mode 100644
-index 000000000..d5d68506e
+index 000000000..00e5e41fc
 --- /dev/null
 +++ b/arch/arm/boot/dts/overlays/motivo-panel-c-overlay.dts
-@@ -0,0 +1,117 @@
+@@ -0,0 +1,121 @@
 +/dts-v1/;
 +/plugin/;
 +
@@ -370,7 +378,7 @@ index 000000000..d5d68506e
 +            status = "okay";
 +
 +            gt9xx: gt9xx@14 {
-+                compatible = "goodix,gt9271";
++                compatible = "goodix,gt1151";
 +                reg = <0x14>;
 +                pinctrl-names = "default";
 +                pinctrl-0 = <&goodix_pins>;
@@ -378,6 +386,10 @@ index 000000000..d5d68506e
 +                interrupts = <27 2>; // high-to-low edge triggered
 +                irq-gpios = <&gpio 27 0>;
 +                reset-gpios = <&gpio 26 0>;
++                touchscreen-size-x = <800>;
++                touchscreen-size-y = <1280>;
++                touchscreen-inverted-y;
++                touchscreen-swapped-x-y;
 +            };
 +        };
 +    };
