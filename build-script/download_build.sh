@@ -1,9 +1,13 @@
 #!/bin/bash
 
 CPU=4
-KERNEL_VERSION="5.10.92"
+KERNEL_VERSION="6.1.58"
 
 case $KERNEL_VERSION in
+    "6.1.58")
+      KERNEL_COMMIT="7b859959a6642aff44acdfd957d6d66f6756021e"
+      PATCH="ili9881c-6.1.x.patch"
+      ;;
     "5.10.92")
       KERNEL_COMMIT="ea9e10e531a301b3df568dccb3c931d52a469106"
       PATCH="ili9881c-5.10.x.patch"
@@ -39,13 +43,13 @@ git apply ${PATCH}
 git status
 cd ..
 
-echo "!!!  Build CM4 kernel and modules  !!!"
+echo "!!!  Build CM4 32-bit kernel and modules  !!!"
 cd linux-${KERNEL_VERSION}-v7l+/
 KERNEL=kernel7l
 make -j${CPU} ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2711_defconfig
 make -j${CPU} ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage modules dtbs
 cd ..
-echo "!!!  CM4 build done  !!!"
+echo "!!!  CM4 32-bit build done  !!!"
 echo "-------------------------"
 
 echo "!!!  Creating archive  !!!"
