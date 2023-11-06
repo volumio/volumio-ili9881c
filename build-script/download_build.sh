@@ -4,6 +4,10 @@ CPU=4
 KERNEL_VERSION="5.10.92"
 
 case $KERNEL_VERSION in
+    "6.1.58")
+      KERNEL_COMMIT="7b859959a6642aff44acdfd957d6d66f6756021e"
+      PATCH="bassowl-6.1.x.patch"
+      ;;
     "5.10.92")
       KERNEL_COMMIT="ea9e10e531a301b3df568dccb3c931d52a469106"
       PATCH="ili9881c-5.10.x.patch"
