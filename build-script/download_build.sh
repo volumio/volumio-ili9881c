@@ -47,6 +47,10 @@ git apply ${PATCH}
 git status
 cd ..
 
+echo "!!!  Copy source files for other variants  !!!"
+rm -rf linux-${KERNEL_VERSION}-v8+/
+cp -r linux-${KERNEL_VERSION}-v7l+/ linux-${KERNEL_VERSION}-v8+/
+
 echo "!!!  Build CM4 32-bit kernel and modules  !!!"
 cd linux-${KERNEL_VERSION}-v7l+/
 KERNEL=kernel7l
@@ -56,12 +60,23 @@ cd ..
 echo "!!!  CM4 32-bit build done  !!!"
 echo "-------------------------"
 
+echo "!!!  Build CM4 64-bit kernel and modules  !!!"
+cd linux-${KERNEL_VERSION}-v8+/
+KERNEL=kernel8
+make -j${CPU} ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
+make -j${CPU} ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs
+cd ..
+echo "!!!  CM4 64-bit build done  !!!"
+echo "-------------------------"
+
 echo "!!!  Creating archive  !!!"
 rm -rf modules-rpi-${KERNEL_VERSION}-ili9881c/
 mkdir -p modules-rpi-${KERNEL_VERSION}-ili9881c/boot/overlays
 mkdir -p modules-rpi-${KERNEL_VERSION}-ili9881c/lib/modules/${KERNEL_VERSION}-v7l+/kernel/drivers/gpu/drm/panel/
+mkdir -p modules-rpi-${KERNEL_VERSION}-ili9881c/lib/modules/${KERNEL_VERSION}-v8+/kernel/drivers/gpu/drm/panel/
 cp linux-${KERNEL_VERSION}-v7l+/arch/arm/boot/dts/overlays/motivo*.dtbo modules-rpi-${KERNEL_VERSION}-ili9881c/boot/overlays
 cp linux-${KERNEL_VERSION}-v7l+/drivers/gpu/drm/panel/panel-ilitek-ili9881c.ko modules-rpi-${KERNEL_VERSION}-ili9881c/lib/modules/${KERNEL_VERSION}-v7l+/kernel/drivers/gpu/drm/panel/
+cp linux-${KERNEL_VERSION}-v8+/drivers/gpu/drm/panel/panel-ilitek-ili9881c.ko modules-rpi-${KERNEL_VERSION}-ili9881c/lib/modules/${KERNEL_VERSION}-v8+/kernel/drivers/gpu/drm/panel/
 tar -czvf modules-rpi-${KERNEL_VERSION}-ili9881c.tar.gz modules-rpi-${KERNEL_VERSION}-ili9881c/ --owner=0 --group=0
 md5sum modules-rpi-${KERNEL_VERSION}-ili9881c.tar.gz > modules-rpi-${KERNEL_VERSION}-ili9881c.md5sum.txt
 sha1sum modules-rpi-${KERNEL_VERSION}-ili9881c.tar.gz > modules-rpi-${KERNEL_VERSION}-ili9881c.sha1sum.txt
