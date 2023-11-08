@@ -1,1 +1,1 @@
-bb67768b07d620a658942578f87552d8867a43f7  modules-rpi-6.1.58-ili9881c.tar.gz
+d19dfc8eae0963b61a92bf7473ae3b5953308cfe  modules-rpi-6.1.58-ili9881c.tar.gz
