@@ -1,1 +1,1 @@
-5d1564917f08385ff4ba4b7d288aa71370d41ed4  modules-rpi-5.10.92-ili9881c.tar.gz
+de38367881ebb150fa425e2a1357a762adf7965d  modules-rpi-5.10.92-ili9881c.tar.gz
